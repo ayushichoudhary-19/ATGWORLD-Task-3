@@ -1,44 +1,144 @@
+/* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 :root {
-    --primary-color: #1890ff;
-    --default-bg-color: #f0f2f5;
-    --default-font-size: 16px;
-    --large-input-size: 40px;
-    --default-button-padding: 8px 16px;
-    --default-button-border-radius: 4px;
+  --black: #000000;
+  --white: #FFFFFF;
+  --default: #1890FF;
+  --hover: #40A9FF;
+  --focused: #40A9FF;
+  --pressed: #096DD9;
+  --loading: #1890FF;
+  --grey: #8C8C8C;
+  --disabled-fill: #F5F5F5;
+  --input-border: 1px solid #D9D9D9;
+  --border-radius: 2px;
+  --input-padding: 9px 30px 9px 30px;
+  --button-padding: 9px 16px 9px 16px;
+  --input-font-size: 16px;
+  --button-font-size: 16px;
+  --font: 'Roboto', sans-serif;
+  --gap: 10px;
+  --transition: all 0.5s ease-in-out;
+  --box-shadow: 0px 0px 4px 0px rgba(24, 144, 255, 0.5);
+
+  /* Text color */
+  --text-color-1: #262626;
+  --text-color-2: #BFBFBF;
+}
+
+*,
+html {
+  text-decoration: none;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* Form container */
+.form-container {
+  font-family: var(--font);
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Atomic CSS classes for input */
+.input {
+  font-size: var(--input-font-size);
+  color: var(--grey);
+  border: var(--input-border);
+  outline: none;
+  background: url(assets/user.svg) no-repeat scroll 7px 7px;
+  padding: var(--input-padding);
+  transition: var(--transition);
+}
+
+.input-default:disabled,
+.input-success {
+  background: url(assets/userdisabled.svg) no-repeat scroll 7px 7px!important;
+  padding: var(--input-padding);
+  background: var(--loading);
+}
+.input:hover {
+  border: 1px solid var(--hover);
+}
+
+.input:focus {
+  border: 1px solid var(--focused);
+  box-shadow: var(--box-shadow);
+  color: var(--black);
+  background: url(assets/user.svg) no-repeat scroll 7px 7px;
+  padding: var(--input-padding);
+}
+
+.input:not(:placeholder-shown)
+{
+  border: var(--input-border);
+  border-radius: var(--border-radius);
+  font-size: var(--input-font-size);
+  color: var(--black);
+  outline: none;
+  background: url(assets/user.svg) no-repeat scroll 7px 7px;
+  padding: var(--input-padding);
+  box-shadow: none;  
+}
+
+/* Atomic CSS classes for button */
+.button-primary {
+  background: var(--default);
+  padding: var(--button-padding);
+  color: var(--white);
+  border: none;
+  align-items: center;
+  transition: var(--transition);
+  font-size: var(--button-font-size);
+}
+.button-primary:hover {
+  background: var(--hover);
+  padding: var(--button-padding);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  align-items: center;
+}
+
+.button:active{
+  background: var(--pressed)!important;
+}
+
+.loading-icon{
+  display: none;
+  margin-right: 8px;
+  animation: rotate 2s linear infinite; 
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
   }
-  body{
-    font-family: 'Roboto', sans-serif;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .input-field {
-    font-size: var(--default-font-size);
-    padding: 8px;
-    margin-bottom: 16px;
-    width: var(--large-input-size);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--default-button-border-radius);
-  }
-  
-  .submit-button {
-    font-size: var(--default-font-size);
-    padding: var(--default-button-padding);
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: var(--default-button-border-radius);
-    cursor: pointer;
-  }
-  
-  .submit-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  
+}
+
+.button-primary:focus {
+  background: var(--pressed);
+}
+
+.button-primary:disabled {
+  background: var(--loading);
+  border: var(--input-border);
+}
+
+
+/* Common CSS */
+.input , .button-primary{
+  border-radius: var(--border-radius);
+}
+.input-success,.button-success{
+  border: var(--input-border)!important;
+  cursor: not-allowed;
+  color: var(--text-color-2)!important;
+  background-color: var(--disabled-fill)!important;
+}
